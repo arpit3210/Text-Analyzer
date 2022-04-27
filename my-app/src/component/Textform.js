@@ -8,17 +8,19 @@ export default function Textform(props) {
         // console.log("Uppercase was clicked" + text);
         let newText =text.toUpperCase();
           setText(newText)
+          props.showAlert("Text has been converted into UpperCase","success");
     }
     const handleLoClick=()=>
     {
         // console.log("Uppercase was clicked" + text);
         let newText =text.toLocaleLowerCase();
           setText(newText)
+          props.showAlert("Text has been converted into LowerCase","success");
     }
     const handleOnChange=(event)=>
     {
         // console.log("Handle don change");
-    
+       
         setText(event.target.value);
     }
     const handleClear=()=>
@@ -26,6 +28,7 @@ export default function Textform(props) {
         // console.log("Handle don change");
     let newText=('');
         setText(newText);
+        props.showAlert("Clear the text","success");
     }
 
     const handleCopy=()=>
@@ -33,6 +36,8 @@ export default function Textform(props) {
       var text =document.getElementById("exampleFormControlTextarea1");
       // text.select();
       navigator.clipboard.writeText(text.value);
+      props.showAlert("Copied to clipboard","success");
+  
     }
 
     const handleExtraspaces=()=>

@@ -1,11 +1,17 @@
 
 import './App.css';
-// import About from './component/About';
+import About from './component/About';
 import Navbar from './component/Navbar';
 import Textform from './component/Textform';
 import Alert from './component/Alert';
-import Color from './component/Color';
+// import Color from './component/Color';
 import React, {useState} from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+
+} from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState('light')
@@ -40,7 +46,7 @@ setTimeout(() => {
 
    
 
-      
+
     }
     else if(mode==='light')
      {
@@ -59,16 +65,29 @@ setTimeout(() => {
  
   }
   return (
-    <>
-<Navbar title="TextUtils" Pricing="cheap" mode={mode} toggleMode={toggleMode} />
+    
+<Router>
+<Navbar title="TextUtils"  mode={mode} toggleMode={toggleMode} />
 <Alert alert={alert}/>
-<div className="container">
-  <Textform showAlert={showalert} heading="Enter the text to Analyse" mode={mode}/>
-</div>
-{/* <div><About/></div> */}
-<Color/>
+<Switch>
+          {/* <Route exact path="/about">
+            <About  />
+          </Route> */}  
 
-</>
+          {/* we can also write this */}
+          <Route exact path="/about" component={About} />
+          <Route exact path="/">
+         
+  <Textform showAlert={showalert} heading="Enter the text to Analyse" mode={mode}/>
+
+          </Route>
+        </Switch>
+
+{/* <div><About/></div> */}
+{/* <Color/> */}
+</Router>
+
+
   );
 }
 
